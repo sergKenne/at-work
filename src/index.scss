@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600&display=swap');
+*,
+*::before, 
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+}
+
+//COLORS
+$blue:#22A0BC;
+$black: #161616;
+$black-light: #595959;
+$grey: #9c9c9c;
+$grey-ligth: #dadada;
+$white: #fdfdfd;
+$white-dark:#f4f4f4;
+
+
+html {
+
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: $black;
+  background-color: $white-dark;
+}
+
+.container {
+  max-width: 1192px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0 auto;
+}
+
+//MIXINS
+@mixin flex-between-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+//COMPONENTS
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32.78px;
+  color: $black;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $grey-ligth;
+  text-transform: capitalize;
+  margin-bottom: 28px;
+}
+
+.card {
+  background-color: #fdfdfd;
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  gap: 20px;
+  @media screen and (max-width:425px) {
+    flex-direction: column;
+    padding: 16px;
+  }
+  &__img {
+    flex: 0 0 112px;
+    height: 120px;
+    @media screen and (max-width:425px) {
+      flex: none;
+    }
+  }
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    @media screen and (max-width:425px) {
+      gap: 12px;
+    }
+  }
+  &__name {
+    color: $blue;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27.32px;
+    margin-bottom: 4px;
+    text-transform: capitalize;
+    @media screen and (max-width:425px) {
+      font-size: 18px;
+      line-height: 24.59px;
+    }
+  }
+  &__work {
+    color:$black-light;
+    line-height: 21.86px;
+    @media screen and (max-width:425px) {
+      line-height: 10.12px;
+      font-size: 14px;
+    }
+  }
+  &__city {
+    margin-top: auto;
+    size:14px;
+    line-height:19.12px;
+    color: $grey;
+    @media screen and (max-width:425px) {
+      font-size: 10px;
+      line-height: 13.66px;
+    }
+  }
+}
+
+.dropdown {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  &__inner {
+    position: relative;
+    height: inherit;
+    width: inherit;
+  }
+  &__icon {
+    width: inherit;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+  &__list {
+    position: absolute;
+    z-index: 2;
+    top: 24px;
+    right: 0;
+    width: 200px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    background-color: $white;
+    display: none;
+    &.show {
+      display: block;
+    }
+  }
+  &__list-item {
+    line-height: 19.12px;
+    color: $black;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+}
+
+
+
+
+//HEADER
+.header {
+  background-color: $white;
+  &__nav {
+    @include flex-between-center;
+    height: 56px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  &__logo {
+    width: 124px;
+    height: 24px;
+  }
+  &__nav-right {
+    @include flex-between-center;
+    gap: 20px;
+  }
+  &__nav-icons {
+    @include flex-between-center;
+    gap: 4px;
+    @media screen and (max-width:425px) {
+      display: none;
+    }
+  }
+  &__icon {
+    height: 24px;
+    width: 24px;
+  }
+  &__avatar {
+    @include flex-between-center;
+    line-height: 21.86px;
+    color: $black-light;
+    gap: 8px;
+  }
+  &__avatar-img {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.users {
+  margin-top: 40px;
+  
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 40px;
+    row-gap: 32px;
+    margin-bottom: 28px;
+    @media screen and (max-width:1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (max-width:768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    &--archive {
+      .card__img {
+        filter: grayscale(90%);
+      }
+    }
+  }
+}
+
+.user {
+
+  &__content {
+    display: flex;
+    gap: 40px;
+  }
+  &__profile {
+    background-color: $white;
+    flex: 0 0 360px;
+    border-radius: 16px;
+    padding: 40px;
+  }
+  &__form {
+    background-color: $white;
+  }
+}
