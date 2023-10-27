@@ -1,14 +1,17 @@
 import Dropdown from "./Dropdown";
 
-const Card = ({name, work, city, image}) => {
+const Card = ({ user, image, isDisabled}) => {
+  
   return (
-      <div className="card">
+      <div className={`card ${isDisabled ? 'disabled' : ''}`}>
           <img src={image} alt="" className="card__img" />
           <div className="card__body">
-            <h5 className="card__name">{ name}</h5>
-            <p className="card__work">{ work}</p>
-            <p className="card__city">{city}</p>
-            <Dropdown />
+              <div className="card__name">
+                  <span className="card__text">{user.username}</span>
+                  <Dropdown user={user} isDisabled={isDisabled} />
+              </div>
+              <p className="card__work">{user.company.name}</p>
+              <p className="card__city">{user.address.city}</p>
           </div>
       </div>
   );

@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom"
-import logo from "../assets/logo.svg"
 import avatar from "../assets/avatar.png"
-import favorite from "../assets/favorite.svg"
-import notification from "../assets/notification.svg"
-
 
 const Header = () => {
   return (
@@ -11,12 +7,18 @@ const Header = () => {
           <div className="container">
               <nav className="header__nav">
                   <Link to="/">
-                      <img src={logo} alt="logo" className="header__logo" />
+                      <svg className="header__logo">
+                          <use xlinkHref="/sprite.svg#logo"></use>
+                      </svg>
                   </Link>
                   <div className="header__nav-right">
                       <div className="header__nav-icons">
-                        <img src={favorite} alt="favorite" className="header__icon" />
-                        <img src={notification} alt="notification" className="header__icon" />
+                          <svg className="header__icon">
+                              <use xlinkHref="/sprite.svg#favorite"></use>
+                          </svg>
+                          <svg className="header__icon">
+                              <use xlinkHref="/sprite.svg#notification"></use>
+                          </svg>
                       </div>
                       <div className="header__avatar">
                           <img src={avatar} alt="avatar" className="header__avatar-img" />

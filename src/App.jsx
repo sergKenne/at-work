@@ -1,11 +1,19 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import Users from './pages/Users'
 import User from './pages/User';
 import Header from './components/Header';
 import NotFound from './pages/NotFound';
+import { useDispatch } from 'react-redux';
+import { fetchUsersAsync } from './store/users/usersSlice';
 
-function App() {
-
+const App = () => {
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(fetchUsersAsync());
+    }, []);
+   
   return (
       <div className="page">
           <Header />

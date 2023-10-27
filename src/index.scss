@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600&display=swap');
-*,
-*::before, 
-*::after {
-  padding: 0;
+* {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+
 ul {
   list-style: none;
 }
@@ -18,11 +17,6 @@ $grey: #9c9c9c;
 $grey-ligth: #dadada;
 $white: #fdfdfd;
 $white-dark:#f4f4f4;
-
-
-html {
-
-}
 
 body {
   font-family: 'Manrope', sans-serif;
@@ -59,49 +53,96 @@ body {
 }
 
 .card {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 112px 1fr;
   background-color: #fdfdfd;
   padding: 24px;
   border-radius: 16px;
-  display: flex;
-  gap: 20px;
-  @media screen and (max-width:425px) {
-    flex-direction: column;
+  @media screen and (max-width:810px) {
     padding: 16px;
   }
+  @media screen and (max-width:700px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
   &__img {
-    flex: 0 0 112px;
     height: 120px;
+    width: 112px;
+    @media screen and (max-width:700px) {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      object-fit: contain;
+    }
     @media screen and (max-width:425px) {
-      flex: none;
+      object-fit: cover;
+    }
+    @media screen and (max-width:321px) {
+      object-fit: contain;
     }
   }
   &__body {
-    flex: 1;
     display: flex;
     flex-direction: column;
+    padding-left: 20px;
     position: relative;
     @media screen and (max-width:425px) {
       gap: 12px;
     }
+    @media screen and (max-width:700px) {
+      height: 110px;
+      padding-left: 0;
+    }
+    @media screen and (max-width:425px) {
+      height: auto;
+    }
   }
   &__name {
+    position: relative;
+    max-width: 100%;
     color: $blue;
     font-weight: 600;
-    font-size: 20px;
     line-height: 27.32px;
     margin-bottom: 4px;
     text-transform: capitalize;
+    padding-right: 26px;
+  }
+  &__text {
+    display: inline-block;
+    width: 160px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 20px;
+    @media screen and (max-width:850px) {
+      width: 120px;
+    }
+    @media screen and (max-width:700px) {
+      width: 190px;
+    }
+    @media screen and (max-width:570px) {
+      width: 120px;
+    }
     @media screen and (max-width:425px) {
       font-size: 18px;
       line-height: 24.59px;
+      width: 90px;
+    }
+    @media screen and (max-width: 321px) {
+      width: 70px;
     }
   }
   &__work {
     color:$black-light;
     line-height: 21.86px;
     @media screen and (max-width:425px) {
-      line-height: 10.12px;
       font-size: 14px;
+      width: 90px;
+      display: inline-block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
   &__city {
@@ -114,6 +155,17 @@ body {
       line-height: 13.66px;
     }
   }
+  &.disabled {
+    .card__name {
+      color: $black-light
+    }
+    .card__work {
+      color: $grey;
+    }
+    .card__city {
+      color: $grey-ligth;
+    }
+  }
 }
 
 .dropdown {
@@ -121,7 +173,7 @@ body {
   height: 24px;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 2px;
   &__inner {
     position: relative;
     height: inherit;
@@ -132,6 +184,10 @@ body {
     width: 24px;
     height: 24px;
     cursor: pointer;
+    fill: #161616;
+    &:hover {
+      fill: $blue;
+    }
   }
   &__list {
     position: absolute;
@@ -149,16 +205,36 @@ body {
     &.show {
       display: block;
     }
+    @media screen and (max-width: 500px) {
+      width: 120px;
+    }
   }
   &__list-item {
     line-height: 19.12px;
     color: $black;
     padding: 8px 12px;
     cursor: pointer;
+    padding: 8px 12px;
+  }
+  &__btn {
+    color: $black;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21.86px;
+    background-color: transparent;
+    @media screen and (max-width: 500px) {
+      font-size: 14px;
+      line-height: 19.12px;
+    }
+    &:hover {
+      color: $blue;
+    }
+    &:disabled {
+      color: $grey-ligth
+    }
   }
 }
-
-
 
 
 //HEADER
@@ -205,17 +281,16 @@ body {
   margin-top: 40px;
   
   &__cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -20px;
+    margin-right: -20px;
     row-gap: 32px;
     margin-bottom: 28px;
-    @media screen and (max-width:1024px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    @media screen and (max-width:768px) {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    @media screen and (max-width:425px) {
+      margin-left: -10px;
+      margin-right: -10px;
+      row-gap: 20px;
     }
     &--archive {
       .card__img {
@@ -223,21 +298,233 @@ body {
       }
     }
   }
+  &__cards-item {
+    width: 33.33%;
+    padding-left: 20px;
+    padding-right: 20px;
+    @media screen and (max-width:1160px) {
+      width: 50%;
+    }
+    @media screen and (max-width:425px) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
 }
 
 .user {
-
+  padding-bottom: 200px;
+  &__top {
+    padding: 20px 0;
+    margin-bottom: 16px;
+  }
+  &__arrow-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: $black-light;
+    border: none;
+    outline: none;
+  }
+  &__arrow-svg {
+    width: 28px;
+    height: 28px;
+  }
   &__content {
     display: flex;
+    flex-wrap: wrap;
     gap: 40px;
+    @media screen and (max-width:768px) {
+      gap: 24px;
+    }
   }
   &__profile {
     background-color: $white;
     flex: 0 0 360px;
     border-radius: 16px;
     padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    @media screen and (max-width:768px) {
+      flex: none;
+      width: 220px;
+      padding: 28px;
+    }
+    @media screen and (max-width:525px) {
+      width: 100%;
+    }
+  }
+  &__image {
+    @media screen and (max-width:525px) {
+     height: 188px;
+     object-fit: cover;
+     border-radius: 8px;
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px
+  }
+  &__info-title {
+    font-size: 16px;
+    line-height: 21.86px;
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    @media screen and (max-width:768px) {
+      font-size: 14px;
+      font-weight: 19.12px;
+      padding-bottom: 8px;
+    }
+  }
+  &__info-text {
+    font-size: 16px;
+    line-height: 21.86px;
+    padding-bottom: 12px;
+    color: $grey;
+    font-weight: 500;
+    margin-bottom: 0;
+    cursor: pointer;
+    @media screen and (max-width:768px) {
+      font-size: 14px;
+      font-weight: 19.12px;
+      padding-bottom: 8px;
+    }
+    &:hover {
+      color: $blue;
+    }
   }
   &__form {
+    position: relative;
     background-color: $white;
+    border-radius: 16px;
+    padding: 40px;
+    flex: 1;
+    @media screen and (max-width:768px) {
+     padding: 28px;
+    }
+  }
+  &__error {
+    color: rgb(255, 38, 0);
+    position: absolute;
+    left: 40px;
+    top: 10px;
+    @media screen and (max-width:768px) {
+     left: 28px;
+     top: 7px;
+    }
+  }
+  &__form-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 420px;
+  }
+  &__form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__form-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: $black;
+    line-height: 24.59px;
+    text-transform: capitalize;
+    
+  }
+  &__form-input {
+    padding: 0px 8px 0px 16px;
+    border: 2px $grey-ligth solid;
+    font-weight: 500;
+    color: $black;
+    line-height: 21.86px;
+    border-radius: 50px;
+    height: 42px;
+    &:focus, &:active {
+      border: 2px $grey-ligth solid;
+      outline: none;
+    }
+  }
+  &__submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 170px;
+    height: 46px;
+    border-radius: 50px;
+    color: $white;
+    background-color: $black;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all .1s linear;
+    &:hover {
+      background-color: $white-dark;
+      color: $black-light;
+    }
+    @media screen and (max-width: 525px) {
+      max-width: 100%;
+    }
+  }
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#000,.5 );
+  justify-content: center;
+  align-items: center;
+  display: none;
+  &.show {
+    display: flex;
+  }
+  &__inner {
+    position: relative;
+    width: 310px;
+    height: 211px;
+    border-radius: 16px;
+    background-color: $white;
+    text-align: center;
+    color: $black-light;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27.32px;
+    @media screen and (max-width: 425px) {
+      width: 271px;
+      height: 189px;
+      font-size: 18px;
+    }
+  }
+  &__cross {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  &__img {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+}
+
+.loading {
+  height: calc(100vh - 170px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 90px;
   }
 }
