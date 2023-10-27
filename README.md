@@ -1,6 +1,12 @@
 
-- # Clone project from https://github.com/sergKenne/at-work.git
+- # Clone project from
+- https://github.com/sergKenne/at-work.git
 
-  # Run  cd at-work
+  # type command
+    cd at-work
 
-  # Run  npm run dev
+  #  install packages
+    npm install
+  
+  # run
+    npm run dev
