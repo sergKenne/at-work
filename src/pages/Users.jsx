@@ -14,15 +14,17 @@ const Users = () => {
                     <h2 className="title">Активные</h2>
                     <div className="users__cards">
                         {users.map((user) => (
-                           <div className='users__cards-item' key={user.id}>
-                              <Card  user={user} image={profile} isDisabled={false}/>
-                           </div>
+                            <div className="users__cards-item" key={user.id}>
+                                <Card user={user} image={profile} isDisabled={false} />
+                            </div>
                         ))}
                     </div>
                     <h2 className="title">Архив</h2>
                     <div className="users__cards users__cards--archive">
                         {archiv.map((user) => (
-                            <Card key={user.id} user={user} image={profile} isDisabled={true}/>
+                            <div className="users__cards-item" key={user.id}>
+                                <Card  user={user} image={profile} isDisabled={true} />
+                            </div>
                         ))}
                     </div>
                 </div>
