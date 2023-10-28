@@ -9,9 +9,9 @@ const Users = () => {
     return (
         <div className="users">
             {loading && <Loading />}
-            {users.length && (
-                <div>
-                    <h2 className="title">Активные</h2>
+            <div>
+                <h2 className="title">Активные</h2>
+                {users.length ? (
                     <div className="users__cards">
                         {users.map((user) => (
                             <div className="users__cards-item" key={user.id}>
@@ -19,16 +19,22 @@ const Users = () => {
                             </div>
                         ))}
                     </div>
-                    <h2 className="title">Архив</h2>
+                ) : (
+                    <h4 className="users__empty">Your Activ is empty...</h4>
+                )}
+                <h2 className="title">Архив</h2>
+                {archiv.length ? (
                     <div className="users__cards users__cards--archive">
                         {archiv.map((user) => (
                             <div className="users__cards-item" key={user.id}>
-                                <Card  user={user} image={profile} isDisabled={true} />
+                                <Card user={user} image={profile} isDisabled={true} />
                             </div>
                         ))}
                     </div>
-                </div>
-            )}
+                ) : (
+                    <h4 className="users__empty">Your Archiv is empty...</h4>
+                )}
+            </div>
         </div>
     );
 };
