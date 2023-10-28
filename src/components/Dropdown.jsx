@@ -11,12 +11,11 @@ const Dropdown = ({ user, isDisabled }) => {
 
     const addAchiv = () => {
         dispatch(addToAchiv(user));
-        setIsDrop(false);
     };
+
     const removeItem = () => {
         if (isDisabled) {
             dispatch(removeFromAcrhiv(user));
-            setIsDrop(false);
         } else {
             dispatch(removeFromList(user))
         }
@@ -29,7 +28,7 @@ const Dropdown = ({ user, isDisabled }) => {
                     onClick={() => setIsDrop((prevIsDrop) => !prevIsDrop)}>
                     <use xlinkHref="/sprite.svg#dropdown"></use>
                 </svg>
-                <ul className={`dropdown__list ${isDrop ? 'show' : ''}`}>
+                <ul className={`dropdown__list ${isDrop ? 'show' : ''}`} onClick={()=>setIsDrop(false)}>
                     <li
                         className="dropdown__list-item"
                         onClick={() => navigate(`/user/${user.id}`)}>

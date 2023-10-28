@@ -212,8 +212,7 @@ body {
   &__list-item {
     line-height: 19.12px;
     color: $black;
-    padding: 8px 12px;
-    cursor: pointer;
+    padding: 8px 12px; 
     padding: 8px 12px;
   }
   &__btn {
@@ -223,6 +222,7 @@ body {
     font-size: 16px;
     line-height: 21.86px;
     background-color: transparent;
+    cursor: pointer;
     @media screen and (max-width: 500px) {
       font-size: 14px;
       line-height: 19.12px;
@@ -279,7 +279,6 @@ body {
 
 .users {
   margin-top: 40px;
-  
   &__cards {
     display: flex;
     flex-wrap: wrap;
